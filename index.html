@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathieu Boumard-Ermine | Étudiant en Cybersécurité</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 20, 40, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3b82f6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #e0e0e0;
+            border: 2px solid #3b82f6;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #2563eb;
+            transform: translateY(-3px);
+        }
+
+        /* Section générique */
+        section {
+            padding: 100px 0;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #3b82f6;
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: rgba(20, 30, 50, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .skill-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(20, 30, 50, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .project-card p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: rgba(20, 30, 50, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3b82f6;
+            border-right: 1px solid rgba(59, 130, 246, 0.2);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .timeline-item:hover {
+            border-left-color: #60a5fa;
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.2);
+            transform: translateX(10px);
+        }
+
+        .timeline-year {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #3b82f6;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Languages */
+        .languages {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .language-item {
+            text-align: center;
+            background: rgba(20, 30, 50, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 30px 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s;
+        }
+
+        .language-item:hover {
+            transform: scale(1.05);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .language-flag {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: rgba(20, 30, 50, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #e0e0e0;
+            display: block;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(15, 20, 40, 0.8);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#parcours">Parcours</a></li>
+                <li><a href="#contact">Me Contacter</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="accueil" class="hero">
+        <div class="container">
+            <h1>Mathieu Boumard-Ermine</h1>
+            <p class="subtitle">Étudiant en Licence Informatique</p>
+            <p class="description">Passionné par la Cybersécurité, le Développement Système et les Réseaux</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Me Contacter</a>
+                <a href="https://www.linkedin.com/in/mathieu-boumard-ermine-1b992b336/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="competences">
+        <div class="container">
+            <h2 class="section-title">Compétences</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Langages de Programmation</h3>
+                    <ul>
+                        <li><strong>Python</strong> - Avancé</li>
+                        <li><strong>C</strong> - Intermédiaire</li>
+                        <li><strong>Java</strong></li>
+                        <li><strong>OCaml</strong></li>
+                        <li><strong>HTML/CSS</strong> - Intermédiaire</li>
+                        <li><strong>Assembleur Y86</strong></li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Sécurité & Réseaux</h3>
+                    <ul>
+                        <li>Protocoles SSL/TLS</li>
+                        <li>Cryptographie de base</li>
+                        <li>TCP/IP, VLANs</li>
+                        <li>Gestion des accès</li>
+                        <li>Wireshark</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Systèmes & Outils</h3>
+                    <ul>
+                        <li>Linux (Arch/Debian)</li>
+                        <li>Windows</li>
+                        <li>Bash</li>
+                        <li>Git</li>
+                        <li>Signaux Unix</li>
+                        <li>Appels système (fork, exec, pipe)</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Langues</h3>
+                    <div class="languages">
+                        <div class="language-item">
+                            <div class="language-flag">🇬🇧</div>
+                            <div>Anglais - C1</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇪🇸</div>
+                            <div>Espagnol - B2</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇨🇳</div>
+                            <div>Chinois - A2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets">
+        <div class="container">
+            <h2 class="section-title">Projets Académiques</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="project-tag">Java</span>
+                    <h3>UB Garden</h3>
+                    <p><strong>Moteur de jeu et simulation d'écosystème</strong></p>
+                    <p>• Gestion dynamique d'entités et génération d'événements temporels</p>
+                    <p>• Débogage complexe de problèmes d'affichage et de logique</p>
+                    <p>• Utilisation de sprites et fichiers de configuration .properties</p>
+                </div>
+                <div class="project-card">
+                    <span class="project-tag">C / Unix</span>
+                    <h3>Programmation Système</h3>
+                    <p><strong>Manipulation bas niveau des processus</strong></p>
+                    <p>• Utilisation avancée des appels systèmes (fork, exec, pipe)</p>
+                    <p>• Gestion des signaux (sigaction, kill, alarm)</p>
+                    <p>• Communication inter-processus</p>
+                </div>
+                <div class="project-card">
+                    <span class="project-tag">Assembleur</span>
+                    <h3>Architecture Y86</h3>
+                    <p><strong>Compréhension de l'architecture processeur</strong></p>
+                    <p>• Implémentation d'une fonction de division euclidienne en assembleur Y86</p>
+                    <p>• Travail sur les fichiers HCL (Hardware Control Language)</p>
+                    <p>• Respect des conventions d'appel</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="parcours">
+        <div class="container">
+            <h2 class="section-title">Parcours</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2023 - 2025</div>
+                    <h3>Licence Informatique</h3>
+                    <p><strong>Université de Bordeaux</strong></p>
+                    <p>Modules clés : Réseaux et Sécurité, Programmation C et Python, Systèmes d'Exploitation, Mathématiques Appliquées</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2024 - 2025</div>
+                    <h3>Employé polyvalent</h3>
+                    <p><strong>McDonald's - Saint-Pierre-du-Mont</strong></p>
+                    <p>Service client, préparation des commandes, gestion des stocks, respect des normes d'hygiène et de sécurité</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2023 - 2024</div>
+                    <h3>Inventaires de nuit</h3>
+                    <p><strong>RGIS - Pessac</strong></p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2022</div>
+                    <h3>Baccalauréat Scientifique</h3>
+                    <p><strong>Mention Bien - Lycée Jean Cassaigne, Mont-de-Marsan</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Me Contacter</h2>
+            <p style="text-align: center; font-size: 1.3rem; margin-bottom: 50px; opacity: 0.9;">
+                En recherche active d'un stage en Cybersécurité / Systèmes
+            </p>
+            <div class="contact-grid">
+                <a href="mailto:mathieu1003.be@hotmail.com" class="contact-card">
+                    <div class="contact-icon">@</div>
+                    <h3>Email</h3>
+                    <p>mathieu1003.be@hotmail.com</p>
+                </a>
+                <a href="https://www.linkedin.com/in/mathieu-boumard-ermine-1b992b336/" target="_blank" class="contact-card">
+                    <div class="contact-icon">in</div>
+                    <h3>LinkedIn</h3>
+                    <p>Mathieu Boumard-Ermine</p>
+                </a>
+                <a href="tel:+33761847835" class="contact-card">
+                    <div class="contact-icon">☎</div>
+                    <h3>Téléphone</h3>
+                    <p>07.61.84.78.35</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mathieu Boumard-Ermine - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 1s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .project-card, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
